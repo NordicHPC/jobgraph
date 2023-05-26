@@ -1,0 +1,870 @@
+{
+  "meta": {
+    "plugin": {
+      "type": "openapi\/dbv0.0.38",
+      "name": "Slurm OpenAPI DB v0.0.38"
+    },
+    "Slurm": {
+      "version": {
+        "major": 22,
+        "micro": 8,
+        "minor": 5
+      },
+      "release": "22.05.8"
+    }
+  },
+  "errors": [
+  ],
+  "jobs": [
+    {
+      "account": "someaccount",
+      "comment": {
+        "administrator": null,
+        "job": null,
+        "system": null
+      },
+      "allocation_nodes": 8,
+      "array": {
+        "job_id": 0,
+        "limits": {
+          "max": {
+            "running": {
+              "tasks": 0
+            }
+          }
+        },
+        "task": null,
+        "task_id": null
+      },
+      "association": {
+        "account": "someaccount",
+        "cluster": "somecluster",
+        "partition": null,
+        "user": "someuser"
+      },
+      "cluster": "somecluster",
+      "constraints": "",
+      "container": null,
+      "derived_exit_code": {
+        "status": "SUCCESS",
+        "return_code": 0
+      },
+      "time": {
+        "elapsed": 229507,
+        "eligible": 1684815519,
+        "end": 0,
+        "start": 1684815519,
+        "submission": 1684815519,
+        "suspended": 0,
+        "system": {
+          "seconds": 0,
+          "microseconds": 0
+        },
+        "limit": 10080,
+        "total": {
+          "seconds": 0,
+          "microseconds": 0
+        },
+        "user": {
+          "seconds": 0,
+          "microseconds": 0
+        }
+      },
+      "exit_code": {
+        "status": "SUCCESS",
+        "return_code": 0
+      },
+      "flags": [
+        "CLEAR_SCHEDULING",
+        "STARTED_ON_SCHEDULE"
+      ],
+      "group": "someuser",
+      "het": {
+        "job_id": 0,
+        "job_offset": null
+      },
+      "job_id": 8685376,
+      "name": "Cs2AgBiBr6",
+      "mcs": {
+        "label": ""
+      },
+      "nodes": "c5-[36,46,48-49,56,58-60]",
+      "partition": "normal",
+      "priority": 19760,
+      "qos": "someaccount",
+      "required": {
+        "CPUs": 16,
+        "memory": 8192
+      },
+      "kill_request_user": null,
+      "reservation": {
+        "id": 0,
+        "name": 0
+      },
+      "state": {
+        "current": "RUNNING",
+        "reason": "None"
+      },
+      "steps": [
+        {
+          "nodes": {
+            "list": [
+              "c5-36"
+            ],
+            "count": 1,
+            "range": "c5-36"
+          },
+          "tres": {
+            "requested": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "consumed": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "allocated": [
+              {
+                "type": "cpu",
+                "name": null,
+                "id": 1,
+                "count": 2
+              },
+              {
+                "type": "mem",
+                "name": null,
+                "id": 2,
+                "count": 16384
+              },
+              {
+                "type": "node",
+                "name": null,
+                "id": 4,
+                "count": 1
+              }
+            ]
+          },
+          "time": {
+            "elapsed": 229507,
+            "end": 0,
+            "start": 1684815519,
+            "suspended": 0,
+            "system": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "total": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "user": {
+              "seconds": 0,
+              "microseconds": 0
+            }
+          },
+          "exit_code": {
+            "status": "SUCCESS",
+            "return_code": 0
+          },
+          "tasks": {
+            "count": 1
+          },
+          "pid": null,
+          "CPU": {
+            "requested_frequency": {
+              "min": 0,
+              "max": 0
+            },
+            "governor": [
+            ]
+          },
+          "kill_request_user": null,
+          "state": "RUNNING",
+          "statistics": {
+            "CPU": {
+              "actual_frequency": 0
+            },
+            "energy": {
+              "consumed": 0
+            }
+          },
+          "step": {
+            "job_id": 8685376,
+            "het": {
+              "component": null
+            },
+            "id": "batch",
+            "name": "batch"
+          },
+          "task": {
+            "distribution": "Unknown"
+          }
+        },
+        {
+          "nodes": {
+            "list": [
+              "c5-36",
+              "c5-46",
+              "c5-48",
+              "c5-49",
+              "c5-56",
+              "c5-58",
+              "c5-59",
+              "c5-60"
+            ],
+            "count": 8,
+            "range": "c5-[36,46,48-49,56,58-60]"
+          },
+          "tres": {
+            "requested": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "consumed": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "allocated": [
+              {
+                "type": "cpu",
+                "name": null,
+                "id": 1,
+                "count": 16
+              },
+              {
+                "type": "mem",
+                "name": null,
+                "id": 2,
+                "count": 131072
+              },
+              {
+                "type": "energy",
+                "name": null,
+                "id": 3,
+                "count": null
+              },
+              {
+                "type": "node",
+                "name": null,
+                "id": 4,
+                "count": 8
+              },
+              {
+                "type": "billing",
+                "name": null,
+                "id": 5,
+                "count": 32
+              }
+            ]
+          },
+          "time": {
+            "elapsed": 229507,
+            "end": 0,
+            "start": 1684815519,
+            "suspended": 0,
+            "system": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "total": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "user": {
+              "seconds": 0,
+              "microseconds": 0
+            }
+          },
+          "exit_code": {
+            "status": "SUCCESS",
+            "return_code": 0
+          },
+          "tasks": {
+            "count": 8
+          },
+          "pid": null,
+          "CPU": {
+            "requested_frequency": {
+              "min": 0,
+              "max": 0
+            },
+            "governor": [
+            ]
+          },
+          "kill_request_user": null,
+          "state": "RUNNING",
+          "statistics": {
+            "CPU": {
+              "actual_frequency": 0
+            },
+            "energy": {
+              "consumed": 0
+            }
+          },
+          "step": {
+            "job_id": 8685376,
+            "het": {
+              "component": null
+            },
+            "id": "extern",
+            "name": "extern"
+          },
+          "task": {
+            "distribution": "Unknown"
+          }
+        },
+        {
+          "nodes": {
+            "list": [
+              "c5-36",
+              "c5-46",
+              "c5-48",
+              "c5-49",
+              "c5-56",
+              "c5-58",
+              "c5-59",
+              "c5-60"
+            ],
+            "count": 8,
+            "range": "c5-[36,46,48-49,56,58-60]"
+          },
+          "tres": {
+            "requested": {
+              "max": [
+                {
+                  "type": "cpu",
+                  "name": null,
+                  "id": 1,
+                  "count": 772299,
+                  "task": 1,
+                  "node": "c5-36"
+                },
+                {
+                  "type": "mem",
+                  "name": null,
+                  "id": 2,
+                  "count": 951869440,
+                  "task": 0,
+                  "node": "c5-36"
+                },
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0,
+                  "task": 0,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 2175661,
+                  "task": 0,
+                  "node": "c5-36"
+                },
+                {
+                  "type": "vmem",
+                  "name": null,
+                  "id": 7,
+                  "count": 987332608,
+                  "task": 0,
+                  "node": "c5-36"
+                },
+                {
+                  "type": "pages",
+                  "name": null,
+                  "id": 8,
+                  "count": 417,
+                  "task": 0,
+                  "node": "c5-36"
+                }
+              ],
+              "min": [
+                {
+                  "type": "cpu",
+                  "name": null,
+                  "id": 1,
+                  "count": 0,
+                  "task": 8,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "mem",
+                  "name": null,
+                  "id": 2,
+                  "count": 0,
+                  "task": 8,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0,
+                  "task": 0,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 2175336,
+                  "task": 7,
+                  "node": "c5-49"
+                },
+                {
+                  "type": "vmem",
+                  "name": null,
+                  "id": 7,
+                  "count": 0,
+                  "task": 8,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "pages",
+                  "name": null,
+                  "id": 8,
+                  "count": 0,
+                  "task": 8,
+                  "node": "c5-56"
+                }
+              ],
+              "average": [
+                {
+                  "type": "cpu",
+                  "name": null,
+                  "id": 1,
+                  "count": 96290
+                },
+                {
+                  "type": "mem",
+                  "name": null,
+                  "id": 2,
+                  "count": 118255104
+                },
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 2175391
+                },
+                {
+                  "type": "vmem",
+                  "name": null,
+                  "id": 7,
+                  "count": 122724608
+                },
+                {
+                  "type": "pages",
+                  "name": null,
+                  "id": 8,
+                  "count": 49
+                }
+              ],
+              "total": [
+                {
+                  "type": "cpu",
+                  "name": null,
+                  "id": 1,
+                  "count": 1540653
+                },
+                {
+                  "type": "mem",
+                  "name": null,
+                  "id": 2,
+                  "count": 1892081664
+                },
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 34806269
+                },
+                {
+                  "type": "vmem",
+                  "name": null,
+                  "id": 7,
+                  "count": 1963593728
+                },
+                {
+                  "type": "pages",
+                  "name": null,
+                  "id": 8,
+                  "count": 784
+                }
+              ]
+            },
+            "consumed": {
+              "max": [
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0,
+                  "task": 0,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 1041293505,
+                  "task": 0,
+                  "node": "c5-36"
+                }
+              ],
+              "min": [
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0,
+                  "task": 0,
+                  "node": "c5-56"
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 3303,
+                  "task": 9,
+                  "node": "c5-56"
+                }
+              ],
+              "average": [
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 65084931
+                }
+              ],
+              "total": [
+                {
+                  "type": "energy",
+                  "name": null,
+                  "id": 3,
+                  "count": 0
+                },
+                {
+                  "type": "fs",
+                  "name": "disk",
+                  "id": 6,
+                  "count": 1041358907
+                }
+              ]
+            },
+            "allocated": [
+              {
+                "type": "cpu",
+                "name": null,
+                "id": 1,
+                "count": 16
+              },
+              {
+                "type": "mem",
+                "name": null,
+                "id": 2,
+                "count": 131072
+              },
+              {
+                "type": "node",
+                "name": null,
+                "id": 4,
+                "count": 8
+              }
+            ]
+          },
+          "time": {
+            "elapsed": 783,
+            "end": 1684816305,
+            "start": 1684815522,
+            "suspended": 0,
+            "system": {
+              "seconds": 28,
+              "microseconds": 437563
+            },
+            "total": {
+              "seconds": 12340,
+              "microseconds": 1406857
+            },
+            "user": {
+              "seconds": 12312,
+              "microseconds": 969294
+            }
+          },
+          "exit_code": {
+            "status": "SUCCESS",
+            "return_code": 0
+          },
+          "tasks": {
+            "count": 16
+          },
+          "pid": null,
+          "CPU": {
+            "requested_frequency": {
+              "min": null,
+              "max": null
+            },
+            "governor": [
+              "Conservative",
+              "Performance",
+              "PowerSave",
+              "OnDemand",
+              "UserSpace"
+            ]
+          },
+          "kill_request_user": null,
+          "state": "COMPLETED",
+          "statistics": {
+            "CPU": {
+              "actual_frequency": 0
+            },
+            "energy": {
+              "consumed": 0
+            }
+          },
+          "step": {
+            "job_id": 8685376,
+            "het": {
+              "component": null
+            },
+            "id": 0,
+            "name": "vasp"
+          },
+          "task": {
+            "distribution": "Block"
+          }
+        },
+        {
+          "nodes": {
+            "list": [
+              "c5-36",
+              "c5-46",
+              "c5-48",
+              "c5-49",
+              "c5-56",
+              "c5-58",
+              "c5-59",
+              "c5-60"
+            ],
+            "count": 8,
+            "range": "c5-[36,46,48-49,56,58-60]"
+          },
+          "tres": {
+            "requested": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "consumed": {
+              "max": [
+              ],
+              "min": [
+              ],
+              "average": [
+              ],
+              "total": [
+              ]
+            },
+            "allocated": [
+              {
+                "type": "cpu",
+                "name": null,
+                "id": 1,
+                "count": 16
+              },
+              {
+                "type": "mem",
+                "name": null,
+                "id": 2,
+                "count": 131072
+              },
+              {
+                "type": "node",
+                "name": null,
+                "id": 4,
+                "count": 8
+              }
+            ]
+          },
+          "time": {
+            "elapsed": 228721,
+            "end": 0,
+            "start": 1684816305,
+            "suspended": 0,
+            "system": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "total": {
+              "seconds": 0,
+              "microseconds": 0
+            },
+            "user": {
+              "seconds": 0,
+              "microseconds": 0
+            }
+          },
+          "exit_code": {
+            "status": "SUCCESS",
+            "return_code": 0
+          },
+          "tasks": {
+            "count": 16
+          },
+          "pid": null,
+          "CPU": {
+            "requested_frequency": {
+              "min": null,
+              "max": null
+            },
+            "governor": [
+              "Conservative",
+              "Performance",
+              "PowerSave",
+              "OnDemand",
+              "UserSpace"
+            ]
+          },
+          "kill_request_user": null,
+          "state": "RUNNING",
+          "statistics": {
+            "CPU": {
+              "actual_frequency": 0
+            },
+            "energy": {
+              "consumed": 0
+            }
+          },
+          "step": {
+            "job_id": 8685376,
+            "het": {
+              "component": null
+            },
+            "id": 1,
+            "name": "vasp"
+          },
+          "task": {
+            "distribution": "Block"
+          }
+        }
+      ],
+      "tres": {
+        "allocated": [
+          {
+            "type": "cpu",
+            "name": null,
+            "id": 1,
+            "count": 16
+          },
+          {
+            "type": "mem",
+            "name": null,
+            "id": 2,
+            "count": 131072
+          },
+          {
+            "type": "energy",
+            "name": null,
+            "id": 3,
+            "count": null
+          },
+          {
+            "type": "node",
+            "name": null,
+            "id": 4,
+            "count": 8
+          },
+          {
+            "type": "billing",
+            "name": null,
+            "id": 5,
+            "count": 32
+          }
+        ],
+        "requested": [
+          {
+            "type": "cpu",
+            "name": null,
+            "id": 1,
+            "count": 16
+          },
+          {
+            "type": "mem",
+            "name": null,
+            "id": 2,
+            "count": 131072
+          },
+          {
+            "type": "node",
+            "name": null,
+            "id": 4,
+            "count": 8
+          },
+          {
+            "type": "billing",
+            "name": null,
+            "id": 5,
+            "count": 32
+          }
+        ]
+      },
+      "user": "someuser",
+      "wckey": {
+        "wckey": "",
+        "flags": [
+        ]
+      },
+      "working_directory": "somedirectory"
+    }
+  ]
+}
