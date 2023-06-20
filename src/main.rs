@@ -31,6 +31,26 @@ mod nodelist;
 mod read_data;
 mod slurm;
 
+// Time is expressed in seconds since the epoch UTC.
+// CPU load is expressed in terms of load on one core by a process, 1.0 == 100% of one core.
+// Memory is expressed in terms of usage by a process.
+// CPU load and memory usage are summed across all processes for the job, on a single host.
+// The "data" map maps a hostname (node name) to the usage data for the job on that node.
+
+pub struct Usage {
+    pub time: f64,
+    pub cpu_load: f64,
+    pub mem_gb: f64
+}
+
+pub struct UsageData {
+    pub min_time_h: f64,
+    pub max_time_h: f64,
+    pub max_cpu_load: f64,
+    pub max_memory_gb: f64,
+    pub data: HashMap<String, Vec<Usage>>
+}
+
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
@@ -121,10 +141,9 @@ fn run_app<B: Backend>(
     requested_memory: usize,
     requested_num_cores: usize,
 ) -> Result<()> {
-    let (min_time_h, max_time_h, data, max_cpu_load, max_memory_gb) =
-        read_data::collect_data(data_path, job_id, dates, hostnames)?;
+    let usage_data = read_data::collect_data(data_path, job_id, dates, hostnames)?;
 
-    let num_charts_per_page = (data.len()).min(3);
+    let num_charts_per_page = (usage_data.data.len()).min(3);
     let num_tabs = (hostnames.len() + num_charts_per_page - 1) / num_charts_per_page;
     let mut tab: isize = 0;
 
@@ -135,12 +154,8 @@ fn run_app<B: Backend>(
                 num_charts_per_page,
                 tab as usize,
                 num_tabs,
-                &data,
                 job_id,
-                min_time_h,
-                max_time_h,
-                max_cpu_load,
-                max_memory_gb,
+                &usage_data,
                 requested_memory,
                 requested_num_cores,
             )
@@ -174,15 +189,16 @@ fn ui<B: Backend>(
     num_charts_per_page: usize,
     tab: usize,
     num_tabs: usize,
-    data: &HashMap<String, Vec<(f64, f64, f64)>>,
     job_id: &str,
-    min_time_h: f64,
-    max_time_h: f64,
-    max_cpu_load: f64,
-    max_memory_gb: f64,
+    usage_data: &UsageData,
     requested_memory: usize,
     requested_num_cores: usize,
 ) {
+    let data = &usage_data.data;
+    let min_time_h = usage_data.min_time_h;
+    let max_time_h = usage_data.max_time_h;
+    let max_cpu_load = usage_data.max_cpu_load;
+    let max_memory_gb = usage_data.max_memory_gb;
     let main_chunks = Layout::default()
         .constraints([Constraint::Length(5), Constraint::Min(0)].as_ref())
         .split(f.size());
@@ -222,9 +238,9 @@ fn ui<B: Backend>(
             .constraints([Constraint::Percentage(50), Constraint::Percentage(50)].as_ref())
             .split(chunks[i % num_charts_per_page]);
 
-        let triples = data.get(hostname).unwrap();
+        let usage = data.get(hostname).unwrap();
 
-        let cpu_data = triples.iter().map(|(x, y, _)| (*x, *y)).collect::<Vec<_>>();
+        let cpu_data = usage.iter().map(|Usage { time, cpu_load, .. }| (*time, *cpu_load)).collect::<Vec<_>>();
 
         draw_chart(
             f,
@@ -238,7 +254,7 @@ fn ui<B: Backend>(
             max_cpu_load,
         );
 
-        let memory_data = triples.iter().map(|(x, _, y)| (*x, *y)).collect::<Vec<_>>();
+        let memory_data = usage.iter().map(|Usage { time, mem_gb, ..}| (*time, *mem_gb)).collect::<Vec<_>>();
 
         draw_chart(
             f,

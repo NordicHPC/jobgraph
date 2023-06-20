@@ -19,15 +19,17 @@ struct Process {
     mem_kb: u64,
 }
 
-// this function reads the data from the csv files and returns a HashMap
-// with the hostname as key and a vector of tuples (time, cpu_load, mem_gb)
-// as value
+use crate::{UsageData, Usage};
+
+// Read data from the csv files and return usage information across time broken down by hostname,
+// along with information about the data ranges.
+
 pub fn collect_data(
     data_path: &str,
     job_id: &str,
     dates: &[String],
     hostnames: &[String],
-) -> Result<(f64, f64, HashMap<String, Vec<(f64, f64, f64)>>, f64, f64)> {
+) -> Result<UsageData> {
     let mut data = HashMap::new();
 
     let now = Utc::now();
@@ -84,11 +86,14 @@ pub fn collect_data(
             }
         }
 
-        // convert map k -> c, m to vector of tuples (k, c, m)
+        // convert map k -> c, m to vector of usage data
         let vec = map
             .iter()
-            .map(|(k, (c, m))| (-((now_unix_epoch - *k) as f64) / 3600.0, *c, *m))
-            .collect::<Vec<(f64, f64, f64)>>();
+            .map(|(k, (c, m))| Usage {
+                time: -((now_unix_epoch - *k) as f64) / 3600.0,
+                cpu_load: *c,
+                mem_gb: *m })
+            .collect::<Vec<Usage>>();
 
         data.insert(hostname.to_string(), vec);
     }
@@ -100,5 +105,5 @@ pub fn collect_data(
     let min_time_h = -((now_unix_epoch - min_timestamp) as f64) / 3600.0;
     let max_time_h = -((now_unix_epoch - max_timestamp) as f64) / 3600.0;
 
-    Ok((min_time_h, max_time_h, data, max_cpu_load, max_memory_gb))
+    Ok(UsageData { min_time_h, max_time_h, max_cpu_load, max_memory_gb, data })
 }
