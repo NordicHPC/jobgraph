@@ -40,7 +40,7 @@ mod slurm;
 pub struct Usage {
     pub time: f64,
     pub cpu_load: f64,
-    pub mem_gb: f64
+    pub mem_gb: f64,
 }
 
 pub struct UsageData {
@@ -48,7 +48,7 @@ pub struct UsageData {
     pub max_time_h: f64,
     pub max_cpu_load: f64,
     pub max_memory_gb: f64,
-    pub data: HashMap<String, Vec<Usage>>
+    pub data: HashMap<String, Vec<Usage>>,
 }
 
 #[derive(Parser, Debug)]
@@ -240,7 +240,10 @@ fn ui<B: Backend>(
 
         let usage = data.get(hostname).unwrap();
 
-        let cpu_data = usage.iter().map(|Usage { time, cpu_load, .. }| (*time, *cpu_load)).collect::<Vec<_>>();
+        let cpu_data = usage
+            .iter()
+            .map(|Usage { time, cpu_load, .. }| (*time, *cpu_load))
+            .collect::<Vec<_>>();
 
         draw_chart(
             f,
@@ -254,7 +257,10 @@ fn ui<B: Backend>(
             max_cpu_load,
         );
 
-        let memory_data = usage.iter().map(|Usage { time, mem_gb, ..}| (*time, *mem_gb)).collect::<Vec<_>>();
+        let memory_data = usage
+            .iter()
+            .map(|Usage { time, mem_gb, .. }| (*time, *mem_gb))
+            .collect::<Vec<_>>();
 
         draw_chart(
             f,

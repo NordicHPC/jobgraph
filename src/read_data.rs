@@ -19,7 +19,7 @@ struct Process {
     mem_kb: u64,
 }
 
-use crate::{UsageData, Usage};
+use crate::{Usage, UsageData};
 
 // Read data from the csv files and return usage information across time broken down by hostname,
 // along with information about the data ranges.
@@ -92,7 +92,8 @@ pub fn collect_data(
             .map(|(k, (c, m))| Usage {
                 time: -((now_unix_epoch - *k) as f64) / 3600.0,
                 cpu_load: *c,
-                mem_gb: *m })
+                mem_gb: *m,
+            })
             .collect::<Vec<Usage>>();
 
         data.insert(hostname.to_string(), vec);
@@ -105,5 +106,11 @@ pub fn collect_data(
     let min_time_h = -((now_unix_epoch - min_timestamp) as f64) / 3600.0;
     let max_time_h = -((now_unix_epoch - max_timestamp) as f64) / 3600.0;
 
-    Ok(UsageData { min_time_h, max_time_h, max_cpu_load, max_memory_gb, data })
+    Ok(UsageData {
+        min_time_h,
+        max_time_h,
+        max_cpu_load,
+        max_memory_gb,
+        data,
+    })
 }
