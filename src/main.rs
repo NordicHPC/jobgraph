@@ -220,7 +220,7 @@ fn ui<B: Backend>(
 
     let chunks = Layout::default()
         .direction(Direction::Vertical)
-        .constraints(constraints_vec.as_ref())
+        .constraints(constraints_vec.as_slice())
         .split(main_chunks[1]);
 
     let mut hostnames = data.keys().collect::<Vec<_>>();
